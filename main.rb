@@ -199,20 +199,30 @@ data = '1531
 1786
 1281'
 
-csv_data = data.split
-final_data = csv_data.map {|num| num.to_i}
+split_data = data.split
+# final_data = new_data.map {|num| num.to_i}
+# the &:method_name calls the method on every array element
+final_data = split_data.map(&:to_i)
+
 # p final_data
-
-# magic = final_data.combination(3).detect { |a, b, c| a + b + c == 2020 }
-# puts magic
-
-# puts 862 + 877 + 281
-# puts 862 * 877 * 281
+x, y = final_data.combination(2).detect { |x, y| x + y == 2020 }
+puts "Numbers are: #{x} and #{y}"
+puts "Total is: #{x + y}"
+puts "Product is: #{x * y}"
+puts  ''
+a, b, c = final_data.combination(3).detect { |a, b, c| a + b + c == 2020 }
+puts "Numbers are: #{a}, #{b}, #{c}"
+puts "Total is: #{a + b + c}"
+puts "Product is: #{a * b * c}"
 
 #################################
-# sum = 0
+# why this won't work- when tracing through the code,
+# note that the flow through the array is unidirectional
+# so the numbers that have been passed are not accounted for! 
+# final_data = [1, 2, 3, 4, 5]
+# sum = 2
 # final_data.each do |num|
-#   if (sum + num = 2020) && (num != 2020)
+#   if (sum + num = 8) && (num != 8)
 #     puts sum
 #     puts num
 #   elsif
